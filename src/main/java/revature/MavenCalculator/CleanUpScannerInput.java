@@ -8,21 +8,34 @@ public class CleanUpScannerInput {
 	 * Primarily uses regex in String.split() method to get rid of unwanted characters.
 	 * */
 		
-	public String cleanEquation(String scannerInput) {
+	public static String cleanEquation(String scannerInput) {
 		
 		// cleaned equation holder
 		String cleanedOutput = new String();
-	
-		// We use String.split() to remove unwanted characters to loop over the result 
-		String[] stringArr = scannerInput.split("[\\sa-zA-Z_,;:'\"@&$#^!()]");
 		
-		// Loop over the created array with wanted characters strings
-		for (String i : stringArr) {
+		// checks if the user wants to quit
+		if (scannerInput.equals("quit")) {
 			
-			//concatenate strings to cleanedOutput variable
-			cleanedOutput += i;
+			cleanedOutput = "quit";
+			
+		// check if the user only inputed alphabetical characters
+		} else if (scannerInput.matches("[a-zA-Z]+")) {
+			
+			cleanedOutput = "Invalid Input";
+			
+		} else {
+			
+			// We use String.split() to remove unwanted characters to loop over the result 
+			String[] stringArr = scannerInput.split("[\\sa-zA-Z_,;:'\"@&$#^!()]");
+			
+			// Loop over the created array with wanted characters strings
+			for (String i : stringArr) {
+				
+				//concatenate strings to cleanedOutput variable
+				cleanedOutput += i;
+			}
 		}
-			
+		
 		return cleanedOutput;
 	}
 	

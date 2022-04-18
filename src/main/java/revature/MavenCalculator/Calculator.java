@@ -61,34 +61,40 @@ public class Calculator implements CalcInterface {
 		
 		// String.contains() method checks for operator
 		// I'm going to have to refactor this logic when adding multiple operations
-		if (cleanedEquation.contains("+")) {
+		try {
+			if (cleanedEquation.contains("+")) {
+				
+				// Utilizes helper function
+				variables = CleanUpScannerInput.splitEquation(cleanedEquation, "+");
+				output = add(variables[0], variables[1]);
+				
+			} else if (cleanedEquation.contains("-")) {
+				
+				variables = CleanUpScannerInput.splitEquation(cleanedEquation, "-");
+				output = subtract(variables[0], variables[1]);
+				
+			} else if (cleanedEquation.contains("*")) {
+				
+				variables = CleanUpScannerInput.splitEquation(cleanedEquation, "*");
+				output = multiply(variables[0], variables[1]);
+				
+			} else if (cleanedEquation.contains("/")) {
+				
+				variables = CleanUpScannerInput.splitEquation(cleanedEquation, "/");
+				output = divide(variables[0], variables[1]);
 			
-			// Utilizes helper function
-			variables = CleanUpScannerInput.splitEquation(cleanedEquation, "+");
-			output = add(variables[0], variables[1]);
+			} else {
 			
-		} else if (cleanedEquation.contains("-")) {
+				variables = CleanUpScannerInput.splitEquation(cleanedEquation, "%");
+				output = modulo(variables[0], variables[1]);
+			}
 			
-			variables = CleanUpScannerInput.splitEquation(cleanedEquation, "-");
-			output = subtract(variables[0], variables[1]);
+			return output;
+		} catch (Exception CalculatingException) {
 			
-		} else if (cleanedEquation.contains("*")) {
-			
-			variables = CleanUpScannerInput.splitEquation(cleanedEquation, "*");
-			output = multiply(variables[0], variables[1]);
-			
-		} else if (cleanedEquation.contains("/")) {
-			
-			variables = CleanUpScannerInput.splitEquation(cleanedEquation, "/");
-			output = divide(variables[0], variables[1]);
-		
-		} else {
-		
-			variables = CleanUpScannerInput.splitEquation(cleanedEquation, "%");
-			output = modulo(variables[0], variables[1]);
+			throw CalculatingException;
 		}
-		
-		return output;
+			
 	}
 
 	@Override

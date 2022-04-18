@@ -30,7 +30,7 @@ public class Driver {
 				System.out.print("Equation: ");
 				
 				// Pulls from scanner
-				equation = sc.nextLine();
+				equation = CleanUpScannerInput.cleanEquation(sc.nextLine());
 				
 				// Checks if user wants to quit
 				if (equation.equals("quit")) {
@@ -38,6 +38,11 @@ public class Driver {
 					System.out.println("Goodbye Human!");
 					run = false;
 					break;
+					
+				} else if (equation.equals("Invalid Input")) {
+					
+					System.out.print("Invalid input. Please enter a numerical equation: ");
+					equation = CleanUpScannerInput.cleanEquation(sc.nextLine());
 				}
 				
 				result = calc.calculate(equation);
@@ -50,13 +55,17 @@ public class Driver {
 			// This runs for the second operation and onward
 			} else {
 				
-				equation = sc.nextLine();
+				equation = CleanUpScannerInput.cleanEquation(sc.nextLine());
 				
 				if (equation.equals("quit")) {
 					
 					System.out.println("Goodbye Human!");
 					run = false;
 					break;
+				} else if (equation.equals("Invalid Input")) {
+					
+					System.out.println("Invalid input. Please enter a numerical equation: ");
+					equation = CleanUpScannerInput.cleanEquation(sc.nextLine());
 				}
 				
 				result = calc.calculate(equation);
