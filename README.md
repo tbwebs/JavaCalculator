@@ -23,7 +23,6 @@ It currently can only handle one operation at a time, and there has to be two nu
 
 ## Future Improvements
 
-- I need to account for only alphabetical characters as an input. As of now it will crash the app.
 - Implement multiple operations for one query.
 - Continuing an operation with the previous equations result.
 - Implement more tests to account for unintended results (like dividing by 0).
